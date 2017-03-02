@@ -23,7 +23,7 @@
 {{# request_query_parameters_text }}
 
 ```json
-{{ request_query_parameters_text }}
+{{{ request_query_parameters_text }}}
 ```
 {{/ request_query_parameters_text }}
 {{# request_body }}
@@ -35,15 +35,38 @@
 
 {{# has_parameters? }}
 
-| Name | Description |
-|:-----|:------------|
-{{# parameters }}
-| {{#scope}}{{scope}}[{{/scope}}{{ name }}{{#scope}}]{{/scope}} {{# required }}*required*{{/ required }} | {{{ description }}} |
-{{/ parameters }}
+| Name | Type | Description | Required |
+|:-----|:----:|:------------|:--------:|
+{{# has_sort_parameters? }}
+| Sorts | | | |
+{{# sort_parameters }}
+| `{{ name }}` | `{{{ type }}}` | {{{ description }}} | {{ required }} |
+{{/ sort_parameters }}
+{{/ has_sort_parameters? }}
+{{# has_filter_parameters? }}
+| Filters | | | |
+{{# filter_parameters }}
+| `{{ name }}` | `{{{ type }}}` | {{{ description }}} | {{ required }} |
+{{/ filter_parameters }}
+{{/ has_filter_parameters? }}
+{{# has_attribute_parameters? }}
+| Attributes | | | |
+{{# attribute_parameters }}
+| `{{ name }}` | `{{{ type }}}` | {{{ description }}} | {{ required }} |
+{{/ attribute_parameters }}
+{{/ has_attribute_parameters? }}
+{{# has_relationships_parameters? }}
+| Relationships | | | |
+{{# relationships_parameters }}
+| `{{ name }}` | `{{{ type }}}` | {{{ description }}} | {{ required }} |
+{{/ relationships_parameters }}
+{{/ has_relationships_parameters? }}
 
 {{/ has_parameters? }}
 {{^ has_parameters? }}
+
 None known.
+
 {{/ has_parameters? }}
 
 {{# response_status}}
@@ -68,11 +91,25 @@ None known.
 
 #### Fields
 
-| Name       | Description         |
-|:-----------|:--------------------|
-{{# response_fields }}
-| {{#scope}}{{scope}}[{{/scope}}{{ name }}{{#scope}}]{{/scope}} | {{{ description }}} |
-{{/ response_fields }}
+| Name | Type | Description |
+|:-----|:----:|:------------|
+{{# has_data_response_field? }}
+{{# data_response_field }}
+| `{{ name }}` | `{{{ type }}}` | {{{ description }}} |
+{{/ data_response_field }}
+{{/ has_data_response_field? }}
+{{# has_attribute_response_fields? }}
+| Attributes | | | |
+{{# attribute_response_fields }}
+| `{{ name }}` | `{{{ type }}}` | {{{ description }}} |
+{{/ attribute_response_fields }}
+{{/ has_attribute_response_fields? }}
+{{# has_relationships_response_fields? }}
+| Relationships | | | |
+{{# relationships_response_fields }}
+| `{{ name }}` | `{{{ type }}}` | {{{ description }}} |
+{{/ relationships_response_fields }}
+{{/ has_relationships_response_fields? }}
 
 {{/ has_response_fields? }}
 
