@@ -37,6 +37,11 @@
 
 | Name | Type | Description | Required |
 |:-----|:----:|:------------|:--------:|
+{{# has_data_parameter? }}
+{{# data_parameter }}
+| `{{ name }}` | `{{{ type }}}` | {{{ description }}} | {{{ required }}} |
+{{/ data_parameter }}
+{{/ has_data_parameter? }}
 {{# has_sort_parameters? }}
 | Sorts | | | |
 {{# sort_parameters }}

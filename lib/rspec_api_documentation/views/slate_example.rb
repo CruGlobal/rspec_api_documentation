@@ -56,6 +56,12 @@ module RspecApiDocumentation
         end
       end
 
+      def data_parameter
+        @data_parameter ||= parameters.select do |field|
+          field[:name] == 'data' && field.key?(:description)
+        end
+      end
+
       def data_response_field
         @data_response_field ||= response_fields.select do |field|
           field[:name] == 'data' && field.key?(:description)
@@ -72,6 +78,10 @@ module RspecApiDocumentation
 
       def has_filter_parameters?
         !filter_parameters.empty?
+      end
+
+      def has_data_parameter?
+        !data_parameter.empty?
       end
 
       def has_data_response_field?
